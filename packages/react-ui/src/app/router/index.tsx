@@ -57,6 +57,7 @@ import TeamPage from '../routes/settings/team';
 import { SignInPage } from '../routes/sign-in';
 import { SignUpPage } from '../routes/sign-up';
 import { ShareTemplatePage } from '../routes/templates/share-template';
+import Custom from '../routes/custom'
 
 import { FlagRouteGuard } from './flag-route-guard';
 import { ProjectRouterWrapper } from './project-route-wrapper';
@@ -72,6 +73,7 @@ const SettingsRerouter = () => {
 };
 
 const routes = [
+  {path: '/custom', element:<Custom/>},
   {
     path: '/embed',
     element: <EmbedPage></EmbedPage>,

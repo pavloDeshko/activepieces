@@ -4,6 +4,7 @@ import { authenticationService } from '../../authentication/authentication-servi
 import { Provider } from '../../authentication/authentication-service/hooks/authentication-service-hooks'
 import { FlagEntity } from '../../flags/flag.entity'
 import { databaseConnection } from '../database-connection'
+import { ensureCustomSeeds } from './custom-seeds'
 
 const DEV_DATA_SEEDED_FLAG = 'DEV_DATA_SEEDED'
 
@@ -55,9 +56,11 @@ export const seedDevData = async (): Promise<void> => {
 
     if (await devDataAlreadySeeded()) {
         logger.info({ name: 'seedDevData' }, 'skip: already seeded')
+        await ensureCustomSeeds()
         return
     }
 
     await seedDevUser()
     await setDevDataSeededFlag()
+    await ensureCustomSeeds()
 }
